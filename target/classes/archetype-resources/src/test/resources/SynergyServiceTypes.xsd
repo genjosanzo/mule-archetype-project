@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.tangoe.com/services/SynergyService/Types"
+	xmlns:tns="http://www.tangoe.com/services/SynergyService/Types"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	jaxb:extensionBindingPrefixes="xjc" elementFormDefault="qualified">
+
+	<xs:annotation>
+		<xs:appinfo>
+			<jaxb:globalBindings>
+				<xjc:simple />
+			</jaxb:globalBindings>
+		</xs:appinfo>
+	</xs:annotation>
+	<!-- Top level elements used in the WSDL -->
+	<xs:element name="Invoke" type="tns:InvokeType" />
+	<xs:element name="InvokeResponse" type="tns:InvokeResponseType" />
+	<xs:element name="Dispatch" type="tns:DispatchType" />
+	<xs:element name="DispatchResponse" type="tns:DispatchResponseType" />
+	<xs:element name="SynergyActionFault" type="tns:SynergyActionFaultType" />
+	<xs:element name="SynergyServiceFault" type="tns:SynergyServiceFaultType" />
+	<xs:element name="SynergyServiceRetryableFault" type="tns:SynergyServiceRetryableFaultType" />
+
+	<!-- Some complex types -->
+	<xs:complexType name="InvokeType">
+		<xs:sequence>
+			<xs:element name="serviceRequest" type="tns:ServiceRequestType" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InvokeResponseType">
+		<xs:sequence>
+			<xs:element name="serviceResponse" type="tns:ServiceResponseType" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DispatchType">
+		<xs:sequence>
+			<xs:element name="synergyMessage" type="tns:SynergyMessageType" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DispatchResponseType">
+		<xs:sequence>
+			<xs:element name="synergyMessage" type="tns:SynergyMessageType" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SynergyActionFaultType">
+		<xs:sequence>
+			<xs:element name="message" nillable="true" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SynergyServiceFaultType">
+		<xs:sequence>
+			<xs:element name="message" nillable="true" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SynergyServiceRetryableFaultType">
+		<xs:sequence>
+			<xs:element name="message" nillable="true" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="SynergyMessageType">
+		<xs:sequence>
+			<xs:element name="synergyMessageHeader" type="tns:MessageHeaderType" />
+			<xs:element name="synergyMessagePayload" type="tns:MessageElementType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ServiceRequestType">
+		<xs:sequence>
+			<xs:element name="synergyMessageHeader" type="tns:MessageHeaderType" />
+			<xs:element name="synergyMessagePayload" type="tns:MessageElementType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ServiceResponseType">
+		<xs:sequence>
+			<xs:element name="synergyMessageHeader" type="tns:MessageHeaderType" />
+			<xs:element name="synergyMessagePayload" type="tns:MessageElementType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MessageElementType">
+		<xs:sequence>
+			<xs:any namespace="##other" processContents="lax" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MessageHeaderType">
+		<xs:sequence>
+			<xs:element name="destination" type="tns:MessageDestinationType"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="properties" type="tns:MessageHeaderPropertiesType"
+				minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MessageDestinationType">
+		<xs:sequence>
+			<xs:element name="transactionType" type="xs:string" />
+			<xs:element name="producer" type="xs:string" />
+			<xs:element name="securityContext" type="tns:MessageSecurityContextType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MessageSecurityContextType">
+		<xs:sequence>
+			<xs:element name="userToken" type="xs:string" />
+			<xs:element name="clients" type="tns:MessageClientsType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MessageClientsType">
+		<xs:sequence>
+			<xs:element name="clientCodeList" type="tns:MessageClientCodeType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MessageClientCodeType">
+		<xs:sequence>
+			<xs:element name="clientCode" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MessageHeaderPropertiesType">
+		<xs:sequence>
+			<xs:element name="propertyList" type="tns:MessageHeaderPropertyType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MessageHeaderPropertyType">
+		<xs:sequence>
+			<xs:element name="key" type="xs:string" />
+			<xs:any namespace="##other" processContents="lax" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

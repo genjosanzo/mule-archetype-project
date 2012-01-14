@@ -1,0 +1,26 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <Invoke xmlns="http://www.tangoe.${packageInPathFormat}/services/SynergyService/Types">
+      <serviceRequest>
+        <synergyMessageHeader>
+          <destination>
+            <securityContext>
+              <clients/>
+            </securityContext>
+          </destination>
+          <properties/>
+        </synergyMessageHeader>
+        <synergyMessagePayload>
+          <AuthenticationRequest:AuthenticationRequest xmlns:AuthenticationRequest="http://synergy.tangoe.${packageInPathFormat}/tangoe/messages/security/authentication" xmlns="http://synergy.tangoe.${packageInPathFormat}/tangoe/messages/security/authentication">
+            <password>password</password>
+            <username>CmpAdmin</username>
+            <domain>CMP</domain>
+          </AuthenticationRequest:AuthenticationRequest>
+        </synergyMessagePayload>
+      </serviceRequest>
+    </Invoke>
+  </soap:Body>
+</soap:Envelope>
