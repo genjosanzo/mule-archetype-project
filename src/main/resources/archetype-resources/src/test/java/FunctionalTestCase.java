@@ -8,11 +8,10 @@
  * license, a copy of which has been included with this distribution in the
  * LICENSE.txt file.
  */
-package ${packageInPathFormat};
+package ${package};
 
 import org.mule.api.MuleMessage;
 import org.mule.api.client.MuleClient;
-import org.mule.tck.junit4.FunctionalTestCase;
 import org.mule.transport.NullPayload;
 
 
@@ -24,19 +23,19 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-public class ${artifactId}TestCase extends FunctionalTestCase
+public class FunctionalTestCase extends org.mule.tck.junit4.FunctionalTestCase
 {
     protected String getConfigResources()
     {
-        return "functional-test-config.xml";
+        return "${artifactId}-test-config.xml";
     }
 
     @Test
-    public void ${artifactId}() throws Exception
+    public void testCofiguration() throws Exception
     {
-        MuleClient client = muleContext.getClient();
-        MuleMessage result = client.send("vm://in", "some data", null);
-
+    	MuleClient client = muleContext.getClient();
+        client.dispatch("vm://in", "some data", null);
+        MuleMessage result = client.request("vm://out", RECEIVE_TIMEOUT);
         assertNotNull(result);
         assertNull(result.getExceptionPayload());
         assertFalse(result.getPayload() instanceof NullPayload);

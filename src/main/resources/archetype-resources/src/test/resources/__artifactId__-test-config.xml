@@ -22,9 +22,12 @@
 		http://www.mulesoft.org/schema/mule/${module} http://www.mulesoft.org/schema/mule/${module}/${schemaVersion}/mule-${module}.xsd
 #end	">
 
-    <description />
+    <description>
+    
+    </description>
+
     <flow name="main">
-       <vm:inbound-endpoint path="in" />
+        <vm:inbound-endpoint path="in" />
 
         <!-- TODO add your service component here. This can also be a Spring bean using <spring-object bean="name"/> -->
        <append-string-transformer message=" Received" />
