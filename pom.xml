@@ -5,7 +5,7 @@
 
 	<groupId>org.mule.modules</groupId>
 	<artifactId>mule-archetype-project</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.2-SNAPSHOT</version>
 	<packaging>maven-archetype</packaging>
 
 	<build>
@@ -41,9 +41,9 @@
         </repository>
     </repositories>
 	<scm>
-		<connection>scm:git:git://github.com/genjosanzo/mule-archetype-project.git</connection>
+		<connection>scm:git:git://github.com:genjosanzo/mule-archetype-project.git</connection>
 		<developerConnection>
-            scm:git:git@github.com/genjosanzo/mule-archetype-project.git
+            scm:git:git@github.com:genjosanzo/mule-archetype-project.git
         </developerConnection>
 		<url>http://github.com/genjosanzo/mule-archetype-project</url>
 	</scm>
