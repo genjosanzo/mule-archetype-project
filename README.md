@@ -11,7 +11,7 @@ Creating a Cloud Connector
 
 Creating a mule application using the mule archetype project is extremely easy. Just invoke it as follows:
 
-	mvn archetype:generate -DarchetypeGroupId=org.mule.tools -DarchetypeArtifactId=mule-archetype-project -DarchetypeVersion=1.1-SNAPSHOT
+	mvn archetype:generate -DarchetypeGroupId=org.mule.tools -DarchetypeArtifactId=mule-archetype-project -DarchetypeVersion=1.4
 						   -DgroupId=org.mule -DartifactId=mule-test-archetype -Dversion=1.0-SNAPSHOT
 						   -DmuleVersion=3.2.1 -DschemaVersion=3.2 -Dpackage=org.mule -Dtransports=file,http,jdbc,jms,vm 
 						   -Dmodules=client,cxf,management,scripting,sxc,xml
