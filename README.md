@@ -6,15 +6,33 @@ Refactoring of the mule maven archetype, totally based on the new maven archetyp
 
 The Mule Archetype Project allows the development of Mule Applications using a simple standard maven archetype. 
 
-Creating a Cloud Connector
+Configuring your settings.xml
+--------------------------
+
+Since the archetype has not been deployed to the standard maven repositories yet you need to add the following server
+to your maven settings.xml
+	
+	<repository>
+	 	<id>muleforge-releases</id>
+	    <name>MuleForge Snapshot Repository</name>
+	    <url>https://repository.mulesoft.org/releases/</url>
+		<releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+	 </repository> 
+
+Creating a Mule Application
 --------------------------
 
 Creating a mule application using the mule archetype project is extremely easy. Just invoke it as follows:
 
 	mvn archetype:generate -DarchetypeGroupId=org.mule.tools -DarchetypeArtifactId=mule-archetype-project -DarchetypeVersion=1.4.1
-						   -DgroupId=org.mule -DartifactId=mule-test-archetype -Dversion=1.0-SNAPSHOT
-						   -DmuleVersion=3.2.1 -DschemaVersion=3.2 -Dpackage=org.mule -Dtransports=file,http,jdbc,jms,vm 
-						   -Dmodules=client,cxf,management,scripting,sxc,xml
+						   -DgroupId=org.mule -DartifactId=mule-test-archetype -Dversion=1.0-SNAPSHOT 
+						   -DmuleVersion=3.2.1 -DschemaVersion=3.2 -Dpackage=org.mule 
+						   -Dtransports=file,http,jdbc,jms,vm -Dmodules=client,cxf,management,scripting,sxc,xml
 						
 Archetype Parameters:
 
@@ -27,5 +45,6 @@ Archetype Parameters:
 |artifactId|The artifact Id of the application you are creating. |
 |version|The version of your application. Usually 1.0-SNAPSHOT.|
 |muleVersion|The version of the mule runtime you are going to use. Current default value is 3.2.1 .|
+|schemaVersion|The version of the mule runtime you are going to use. Current default value is 3.2 .|
 |transports|A comma separated list of the transport you are going to use within your app . Current default value is file,http,jdbc,jms,vm .|
 |modules|A comma separated list of the modules you are going to use within your app . Current default value is client,cxf,management,scripting,sxc,xml .|

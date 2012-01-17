@@ -8,6 +8,8 @@
 #foreach($module in $modules.split(','))
 	#if ($module == "xml")
 	  xmlns:mule-xml="http://www.mulesoft.org/schema/mule/${module}"
+	#elseif($item == "doc")
+      xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	#else
       xmlns:${module}="http://www.mulesoft.org/schema/mule/${module}"
 	#end
