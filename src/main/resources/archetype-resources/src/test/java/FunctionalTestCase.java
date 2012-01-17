@@ -13,11 +13,7 @@ package ${package};
 import org.mule.api.MuleMessage;
 import org.mule.api.client.MuleClient;
 import org.mule.transport.NullPayload;
-
-
-import org.junit.Assert;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
