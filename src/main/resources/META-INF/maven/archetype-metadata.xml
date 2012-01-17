@@ -21,12 +21,6 @@
 			<defaultValue>file,http,jdbc,jms,vm</defaultValue>
 		</requiredProperty>
 		<requiredProperty key="modules">
-			<description>Which Mule modules do you want to include in this project?
-
-(options: annotations, atom, boot, builders, client, cxf, doc, guice, ibeans,
-          jaas, jbossts, jersey, json, management, ognl, pgp, rss, scripting,
-          spring-extras, spring-security, sxc, xml):
-          </description>
 			<defaultValue>client,cxf,management,scripting,sxc,xml</defaultValue>
 		</requiredProperty>
 		<requiredProperty key="muleVersion">

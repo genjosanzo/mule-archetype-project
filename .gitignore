@@ -1,3 +1,9 @@
-target/
-.settings
-.project
+/.classpath
+/.settings
+/.project
+/.jruby
+*.iml
+*.ipr
+*.iws
+/target
+.DS_Store*
