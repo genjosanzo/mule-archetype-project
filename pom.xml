@@ -45,6 +45,6 @@
 		<developerConnection>
             scm:git:git@github.com:genjosanzo/mule-archetype-project.git
         </developerConnection>
-		<url>http://github.com/genjosanzo/mule-archetype-project</url>
+		<url>scm:git:git@github.com:genjosanzo/mule-archetype-project</url>
 	</scm>
 </project>
