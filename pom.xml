@@ -41,9 +41,9 @@
         </repository>
     </repositories>
 	<scm>
-		<connection>scm:git:git://github.com:genjosanzo/mule-archetype-project.git</connection>
+		<connection>scm:git:git://github.com/genjosanzo/mule-archetype-project.git</connection>
 		<developerConnection>
-            scm:git:git@github.com:genjosanzo/mule-archetype-project.git
+            scm:git:git@github.com/genjosanzo/mule-archetype-project.git
         </developerConnection>
 		<url>http://github.com/genjosanzo/mule-archetype-project</url>
 	</scm>
