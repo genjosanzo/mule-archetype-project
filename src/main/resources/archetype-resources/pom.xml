@@ -1,6 +1,8 @@
+
 #set( $symbol_dollar = '$' )
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>${groupId}</groupId>
@@ -55,19 +57,6 @@
 										<ignore></ignore>
 									</action>
 								</pluginExecution>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.apache.cxf</groupId>
-										<artifactId>cxf-codegen-plugin</artifactId>
-										<versionRange>[2.3.1,)</versionRange>
-										<goals>
-											<goal>wsdl2java</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
@@ -78,7 +67,7 @@
 			<plugin>
 				<groupId>org.mule.tools</groupId>
 				<artifactId>maven-mule-plugin</artifactId>
-				<version>1.6</version>
+				<version>1.7</version>
 				<extensions>true</extensions>
 				<configuration>
 					<copyToAppsDirectory>true</copyToAppsDirectory>
@@ -119,19 +108,23 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
 				<version>1.7</version>
+#if(${addAppToClasspath} == 'true')
 				<executions>
 					<execution>
-						<id>add-source</id>
-						<phase>generate-sources</phase>
+						<id>add-resource</id>
+						<phase>generate-resources</phase>
 						<goals>
-							<goal>add-source</goal>
+							<goal>add-resource</goal>
 						</goals>
 						<configuration>
-							<sources>
-								<source>target/generated-sources/cxf/</source>
-							</sources>
+							<resources>
+								<resource>
+									<directory>src/main/app/</directory>
+								</resource>
+							</resources>
 						</configuration>
 					</execution>
+#end
 				</executions>
 			</plugin>
 		</plugins>
@@ -229,7 +222,8 @@
 		</dependency>
 
 		<!-- Mule Transports -->
-		#foreach($transport in $transports.split(","))<dependency>
+		#foreach($transport in $transports.split(","))
+		<dependency>
 			<groupId>org.mule.transports</groupId>
 			<artifactId>mule-transport-${transport}</artifactId>
 			<version>${symbol_dollar}{mule.version}</version>
@@ -238,12 +232,15 @@
 		#end
 
 		<!-- Mule Modules -->
-		#foreach($module in $modules.split(","))<dependency>
+		#foreach($module in $modules.split(","))
+		#if($module != 'doc' && $module != 'context')
+		<dependency>
 			<groupId>org.mule.modules</groupId>
 			<artifactId>mule-module-${module}</artifactId>
 			<version>${symbol_dollar}{mule.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		#end
 		#end
 		<!-- for testing -->
 		<dependency>
@@ -267,24 +264,24 @@
 	</dependencies>
 
 	<repositories>
-        <repository>
-            <id>jboss</id>
-            <name>JBoss</name>
-            <url>http://repository.jboss.com/</url>
-        </repository>
-        <repository>
-            <id>mulesoft-releases</id>
-            <name>MuleSoft Releases</name>
-            <url>http://repository.mulesoft.org/releases/</url>
-        </repository>
-        <repository>
-            <id>oss-sonatype-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>codehaus-snaphosts</id>
-            <name>Codehaus Snapshots</name>
-            <url>http://snapshots.repository.codehaus.org/</url>
-        </repository>
-    </repositories>
+		<repository>
+			<id>jboss</id>
+			<name>JBoss</name>
+			<url>http://repository.jboss.com/</url>
+		</repository>
+		<repository>
+			<id>mulesoft-releases</id>
+			<name>MuleSoft Releases</name>
+			<url>http://repository.mulesoft.org/releases/</url>
+		</repository>
+		<repository>
+			<id>oss-sonatype-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</repository>
+		<repository>
+			<id>codehaus-snaphosts</id>
+			<name>Codehaus Snapshots</name>
+			<url>http://snapshots.repository.codehaus.org/</url>
+		</repository>
+	</repositories>
 </project>
