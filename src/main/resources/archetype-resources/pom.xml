@@ -124,9 +124,9 @@
 							</resources>
 						</configuration>
 					</execution>
-#end
 				</executions>
 			</plugin>
+#end
 		</plugins>
 	</build>
 
@@ -222,26 +222,26 @@
 		</dependency>
 
 		<!-- Mule Transports -->
-		#foreach($transport in $transports.split(","))
+#foreach($transport in $transports.split(","))
 		<dependency>
 			<groupId>org.mule.transports</groupId>
 			<artifactId>mule-transport-${transport}</artifactId>
 			<version>${symbol_dollar}{mule.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		#end
+#end
 
 		<!-- Mule Modules -->
-		#foreach($module in $modules.split(","))
-		#if($module != 'doc' && $module != 'context')
+#foreach($module in $modules.split(","))
+#if($module != 'doc' && $module != 'context')
 		<dependency>
 			<groupId>org.mule.modules</groupId>
 			<artifactId>mule-module-${module}</artifactId>
 			<version>${symbol_dollar}{mule.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		#end
-		#end
+#end
+#end
 		<!-- for testing -->
 		<dependency>
 			<groupId>org.mule.tests</groupId>
