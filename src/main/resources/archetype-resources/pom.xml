@@ -50,6 +50,7 @@
 										<versionRange>[1.6,)</versionRange>
 										<goals>
 											<goal>attach-test-resources</goal>
+											<goal>filter-resources</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>
